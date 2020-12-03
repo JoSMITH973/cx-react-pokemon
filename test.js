@@ -7,7 +7,6 @@ let file = fs.readFileSync('./server/pokedex.json',"utf-8")
 pokeJson = JSON.parse(file)
 numOfPokemon = pokeJson.length
 fs.writeFileSync('./newPokedex.json',"[")  
-let startModif=0;
 for (i=0;i<numOfPokemon;i++){
     console.log(numOfPokemon)
     console.log("i : ",i)
