@@ -1,5 +1,5 @@
 const fs = require('fs')
-const convertJToC = require()
+const jsonexport = require('jsonexport/dist')
 
 // let file = fs.readFileSync('./pokedexMini.json',"utf-8") // Fichier test
 let file = fs.readFileSync('./server/pokedex.json',"utf-8")
@@ -40,3 +40,24 @@ for (i=0;i<numOfPokemon;i++){
 let attaqueFile = fs.readFileSync('./attaques.json',"utf-8")
 attaqueInsert = attaqueFile.replace(/\]\n\[+/g,",\n")
 fs.writeFileSync('./attaques.json',attaqueInsert)  
+
+let pokeFile = fs.readFileSync('./newPokedex.json',"utf-8")
+let attaqueCsv = JSON.parse(attaqueFile)
+let pokeCsv = JSON.parse(pokeFile)
+
+jsonexport(attaqueCsv, function(err, csv){
+    if (err) {
+    return console.error(err);
+    }
+    // console.log(csv);
+    fs.writeFileSync('./attaques.csv',csv)  
+});
+
+jsonexport(pokeCsv, function(err, csv){
+    if (err) {
+    return console.error(err);
+    }
+    // console.log(csv);
+    fs.writeFileSync('./pokedex.csv',csv)  
+});
+
