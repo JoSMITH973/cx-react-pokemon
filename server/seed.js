@@ -38,6 +38,7 @@ async function conversion(){
 async function insertion() {
     await conversion()
     let Promise=require('bluebird');
+    
     let knex = require('knex')({
     client: 'pg',
     connection: {
