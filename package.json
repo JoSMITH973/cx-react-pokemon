@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "server/seed"
+    "server": "nodemon server/server",
+    "client": "npm run start --prefix client",
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -19,8 +21,10 @@
   },
   "homepage": "https://github.com/JoSMITH973/cx-react-pokemon#readme",
   "dependencies": {
+    "axios": "^0.21.0",
     "body": "^5.1.0",
     "fast-csv": "^4.3.6",
+    "http-proxy-middleware": "^1.0.6",
     "json2csv": "^5.0.5",
     "jsonexport": "^3.0.1",
     "knex": "^0.21.12",

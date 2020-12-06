@@ -2,11 +2,8 @@ const express = require('express')
 const app = express()
 const PORT = process.argv[2] || 4242
 
-const pokemonId = require('./routes/pokemons')
-const apiRoute = require('./routes/pokemons')
-
-app.use('/pokemons',apiRoute)
-app.use('/',apiRoute)
+const pokemons = require('./routes/pokemons')
+app.use('/pokemons',pokemons)
 
 // app.get('/',(req,res) => {
 //     console.log('Server is listening on localhost:'+PORT)
