@@ -2,32 +2,37 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 class Main extends Component {
-    constructor(props){
-        super(props);
+    constructor(props) {
+        super(props)
         this.state = {
-            loading:true,
-            pokemons: {}
+          user: null
         }
-    }
-    componentDidMount() {
-        axios.get('/pokemons/pokemonId').then(response => {
-            console.log(response)
+      }
+    
+      getAllPokemons() {
+        fetch('http://localhost:4242/pokemons/001').then(response => {
+          response.json().then(data => {
+            this.setState({user: data })
+          })
         })
-    }
-    render() {
-        if (this.state.loading === true) {
-            return (
-                <h1> Loading ...</h1>
-            )
-        }
+      }
+    
+      componentDidMount() {
+        this.getAllPokemons()
+      }
+    
+      render() {
         return (
-            <ul>
-                <li>
-
-                </li>
-            </ul>
-        )
-        }
+          <div className="App">
+            <header className="App-header">
+              <p>
+                Welcome to my Pokedex
+              </p>
+                User {JSON.stringify(this.state.user)}
+            </header>
+          </div>
+        );
+      }
 }
 
 export default Main
